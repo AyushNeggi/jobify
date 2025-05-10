@@ -3,8 +3,13 @@ import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import useGetAllCompanies from "@/hooks/useGetAllCompanies";
+import useGetAllAdminJobs from "@/hooks/useGetAllAdminJobs";
 
 const AdminHome = () => {
+  useGetAllCompanies();
+  useGetAllAdminJobs();
+
   return (
     <div className="min-h-screen flex flex-col ">
       <Navbar />

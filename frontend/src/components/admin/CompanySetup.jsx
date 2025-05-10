@@ -111,7 +111,7 @@ const CompanySetup = () => {
               <h1 className=" block font-medium mb-[6px] ">Location</h1>
               <Select  onValueChange={(value) => selectChangeHandler("location", value)}>
                 <SelectTrigger className="w-[184px]">
-                  <SelectValue placeholder="Select Job Location"  />
+                  <SelectValue placeholder="Select Company Location"  />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>

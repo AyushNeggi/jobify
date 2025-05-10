@@ -15,45 +15,49 @@ const Job = ({ job }) => {
   };
 
   return (
-    <div className="p-5 rounded-md shadow-xl bg-white border border-gray-200">
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">{daysAgoFunction(job?.createdAt) === 0 ? "today" : `${daysAgoFunction(job?.createdAt)} days ago `} </p>
+    <div className="px-6 py-2 rounded-2xl shadow-md bg-white border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between min-h-[260px]">
+      {/* Date posted */}
+      <div className="text-xs text-gray-400  text-right">
+        {daysAgoFunction(job?.createdAt) === 0 ? "Today" : `${daysAgoFunction(job?.createdAt)} day(s) ago`}
       </div>
-      <div className="flex items-center gap-2 my-2">
-        <Button className="p-4" variant="outline" size="icon">
-          <Avatar>
-            <AvatarImage src={job?.company?.logo} />
-          </Avatar>
-        </Button>
+
+      {/* Company Info */}
+      <div className="flex items-center gap-3 mb-3">
+        <Avatar className="w-12 h-12 border">
+          <AvatarImage src={job?.company?.logo || "https://via.placeholder.com/40"} alt="Company Logo" />
+        </Avatar>
         <div>
-          <h1 className="font-medium text-lg">{job?.company?.name}</h1>
-          <p className="text-sm text-gray-500">India</p>
+          <h2 className="text-md font-semibold truncate">{job?.company?.name}</h2>
+          <p className="text-xs text-gray-500">India</p>
         </div>
       </div>
 
-      <div>
-        <h1 className="font-bold text-lg my-2">{job?.title}</h1>
-        <p>{job?.description}</p>
+      {/* Job Title and Description */}
+      <div className="mb-3">
+        <h1 className="text-lg font-bold text-gray-800 truncate">{job?.title}</h1>
+        <p className="text-sm text-gray-600 line-clamp-3 h-[2.5rem]">{job?.description}</p>
       </div>
 
-      <div className="space-x-2">
-        <Badge className={"text-blue-700 font-bold"} variant="ghost">
+      {/* Tags / Badges */}
+      <div className="flex flex-wrap gap-2 mb-2">
+        <Badge className="text-blue-700 font-medium" variant="outline">
           {job?.position} Positions
         </Badge>
-        <Badge className={"text-[#F83002] font-bold"} variant="ghost">
+        <Badge className="text-red-600 font-medium" variant="outline">
           {job?.jobType}
         </Badge>
-        <Badge className={"text-[#7209b7] font-bold"} variant="ghost">
-          {job?.salary} LPA
+        <Badge className="text-purple-700 font-medium" variant="outline">
+          ₹{job?.salary} LPA
         </Badge>
       </div>
-      <div className="flex items-center  gap-4 mt-4">
-        <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline">
-          Details
+
+      {/* View Details Button */}
+      <div className="mt-auto">
+        <Button onClick={() => navigate(`/description/${job?._id}`)} variant="secondary" className="w-full">
+          View Details
         </Button>
       </div>
     </div>
   );
 };
-
 export default Job;

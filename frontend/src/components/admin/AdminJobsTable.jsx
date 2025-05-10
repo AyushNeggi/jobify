@@ -80,7 +80,7 @@ const AdminJobsTable = () => {
           {filterJobs?.map((job) => (
             <tr>
               <Avatar className="w-16 h-16 mt-4 mr-4">
-                <AvatarImage src={job?.company.logo} />
+                <AvatarImage src={job?.company?.logo} />
               </Avatar>
 
               <TableCell className="font-semibold">{job?.title?.charAt(0).toUpperCase() + job?.title?.slice(1)}</TableCell>

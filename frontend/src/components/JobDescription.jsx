@@ -14,7 +14,6 @@ export const JobDescription = () => {
   const jobId = params.id;
   const { singleJob } = useSelector((store) => store.job);
 
-  console.log(jobId);
   const { user } = useSelector((store) => store.auth);
 
   const dispatch = useDispatch();
