@@ -27,7 +27,7 @@ const Browse = () => {
     const timer = setTimeout(() => {
       setVisibleJobs(allJobs);
       setLoading(false);
-    }, 250); // 1 second delay
+    }, 1000); // 1 second delay
 
     return () => clearTimeout(timer);
   }, [allJobs]);
