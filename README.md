@@ -21,13 +21,13 @@ It provides a seamless job application experience and powerful admin controls to
 ![Browse](screenshots/browse.png)
 
 ### 📄 Job Description  
-![Job Description](screenshots/job-description.png)
+![Job Description](screenshots/jobdescription.png)
 
 ### 👤 Student Profile  
 ![Student Profile](screenshots/profile.png)
 
 ### 👨‍💼 Admin Dashboard  
-![Admin](screenshots/admin-dashboard.png)
+![Admin](screenshots/adminpage.png)
 
 
 ---
