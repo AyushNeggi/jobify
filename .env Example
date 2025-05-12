@@ -1,0 +1,9 @@
+# .env (Backend)
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/
+PORT=8000
+SECRET_KEY=your_jwt_secret_here
+
+# Cloudinary Config
+CLOUD_NAME=your_cloud_name
+API_KEY=your_api_key
+API_SECRET=your_api_secret
