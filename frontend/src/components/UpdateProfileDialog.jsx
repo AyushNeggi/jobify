@@ -11,9 +11,9 @@ import { toast } from "sonner";
 import { setUser } from "@/redux/authSlice";
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
+
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((store) => store.auth);
-
   const [input, setInput] = useState({
     fullname: user?.fullname || "",
     email: user?.email || "",
@@ -119,8 +119,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             <DialogFooter>
               {loading ? (
                 <Button className="w-full my-4">
-                  {" "}
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 </Button>
               ) : (
                 <Button type="submit" className="w-full my-4">

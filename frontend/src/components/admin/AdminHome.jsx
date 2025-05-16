@@ -7,6 +7,7 @@ import useGetAllCompanies from "@/hooks/useGetAllCompanies";
 import useGetAllAdminJobs from "@/hooks/useGetAllAdminJobs";
 
 const AdminHome = () => {
+
   useGetAllCompanies();
   useGetAllAdminJobs();
 
@@ -14,7 +15,7 @@ const AdminHome = () => {
     <div className="min-h-screen flex flex-col ">
       <Navbar />
       <hr className="" />
-
+      
       <div className="max-w-6xl mx-auto  flex-grow  ">
         <div>
           <Button className="rounded-lg p-10 my-16 text-[20px] font-medium bg-[#E9F2A2] text-red-500 hover:bg-[#b9c17f]">
@@ -34,6 +35,7 @@ const AdminHome = () => {
               Current Jobs
             </div>
           </Link>
+
         </div>
       </div>
 

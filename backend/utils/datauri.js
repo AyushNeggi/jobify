@@ -1,4 +1,4 @@
-import DataUriParser from "datauri/parser.js"
+import DataUriParser from "datauri/parser.js"                //Converts the uploaded file (from multer) into a base64 string with proper MIME type.
 
 import path from "path";
 

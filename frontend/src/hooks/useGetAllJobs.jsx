@@ -1,3 +1,4 @@
+//hook to get all jobs with or without searchedquery 
 import { setAllJobs, setOriginalJobs } from "@/redux/jobSlice";
 import { JOB_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
@@ -23,6 +24,6 @@ const useGetAllJobs = () => {
       }
     };
     fetchAllJobs();
-  }, [searchedQuery]);
+  }, [searchedQuery]);                    //so React will re-run useEffect every time you update the search box (that updates Redux).
 };
 export default useGetAllJobs;

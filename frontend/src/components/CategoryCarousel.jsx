@@ -37,7 +37,7 @@ const CategoryCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious /> {/*//for arrows */}
+        <CarouselPrevious />                          {/*//for arrows */}
         <CarouselNext />
       </Carousel>
     </div>

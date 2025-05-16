@@ -16,7 +16,6 @@ import {
   REGISTER,
 } from 'redux-persist'
 
-//import applicationSlice from "./applicationSlice";
 
 const persistConfig = {
   key: 'root',

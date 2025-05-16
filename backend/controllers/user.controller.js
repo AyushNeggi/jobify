@@ -1,7 +1,6 @@
-
 import { User } from "../models/user.model.js";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";                    //to hash and compare passwords securely
+import jwt from "jsonwebtoken";                   //to generate JWT tokens that prove a user is logged in 
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 
@@ -17,8 +16,7 @@ export const register = async (req, res) => {
     }
 
     const file = req.file;
-    const fileUri = getDataUri(file);
-
+    const fileUri = getDataUri(file);                        //This converts the file into a Data URI (base64 string) so we can send it to Cloudinary
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
       resource_type: "raw",
     });
@@ -30,10 +28,9 @@ export const register = async (req, res) => {
         success: false,
       });
     }
+    const hashedPassword = await bcrypt.hash(password, 10);        //Takes user's raw password and hashes it securely.
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // ✅ Store created user in a new variable
+    //  Store created user in a new variable
     const newUser = await User.create({
       fullname,
       email,
@@ -45,12 +42,12 @@ export const register = async (req, res) => {
       },
     });
 
-    // ✅ Create token
-    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
+    //  Create token
+    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {                 //Creates a JWT token for this user, signed with a secret key.
       expiresIn: "1d",
     });
 
-    // ✅ Prepare cleaned user object
+    //  Prepare cleaned user object
     const cleanUser = {
       _id: newUser._id,
       fullname: newUser.fullname,
@@ -60,13 +57,13 @@ export const register = async (req, res) => {
       profile: newUser.profile,
     };
 
-    // ✅ Send cookie and response
+    //  Send cookie and response
     return res
       .status(201)
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "strict",
+        httpOnly: true,                         // JS can’t access this cookie (security)
+        sameSite: "strict",                      // for CSRF protection
       })
       .json({
         message: "Account created and logged in successfully",
@@ -169,7 +166,7 @@ export const updateProfile = async (req, res) => {
     if (skills) {
       skillsArray = skills.split(",");
     }
-    const userId = req.id; // middleware authentication
+    const userId = req.id;                             // middleware authentication req.id comes from authentication middleware that decoded JWT and attached user ID to request.
     let user = await User.findById(userId);
 
     if (!user) {

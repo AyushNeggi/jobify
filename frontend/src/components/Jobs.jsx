@@ -27,9 +27,9 @@ const Jobs = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-7xl mx-auto mt-5">
+      <div className="max-w-7xl mx-auto mt-8">
         <div className="flex gap-5">
-          <div className="w-30%">
+          <div className="w-30% ">
             <FilterCard />
           </div>
           {filterJobs.length <= 0 ? (
@@ -37,7 +37,7 @@ const Jobs = () => {
               <span className="p-4  border-4 border-indigo-500 font-medium text-[16px] shadow-lg">Currently no job is available</span>
             </div>
           ) : (
-            <div className="flex-1 h-[88vh] overflow-y-auto pb-5">
+            <div className="flex-1  pb-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
                 {filterJobs.map((job) => (
                   <motion.div

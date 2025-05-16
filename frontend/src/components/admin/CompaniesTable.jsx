@@ -13,7 +13,6 @@ import { Button } from "../ui/button";
 
 const CompaniesTable = () => {
   const { companies, searchCompanyByText } = useSelector((store) => store.company);
-  //for filters while searching companies
   const [filterCompany, setFilterCompany] = useState(companies);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -63,9 +62,7 @@ const CompaniesTable = () => {
             <TableHead>Name</TableHead>
             <TableHead>Location</TableHead>
             <TableHead>website</TableHead>
-
             <TableHead>Date</TableHead>
-
             <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>

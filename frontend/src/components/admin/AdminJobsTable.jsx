@@ -12,7 +12,6 @@ import { toast } from "sonner";
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 const AdminJobsTable = () => {
-
   const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
   const [loadingJobId, setLoadingJobId] = useState(null);
@@ -31,8 +30,6 @@ const AdminJobsTable = () => {
     });
     setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
-
- 
 
   const deleteJob = async (jobId) => {
     try {
@@ -62,15 +59,12 @@ const AdminJobsTable = () => {
         <TableHeader className="text-[18px]">
           <TableRow>
             <TableHead> Logo </TableHead>
-
             <TableHead>Role</TableHead>
             <TableHead>Company Name</TableHead>
-
             <TableHead>Salary - CTC(Annual)</TableHead>
             <TableHead>Location</TableHead>
             <TableHead>Job Type</TableHead>
             <TableHead>Total Applied</TableHead>
-
             <TableHead>Date</TableHead>
 
             <TableHead className="text-right">Action</TableHead>
@@ -82,16 +76,12 @@ const AdminJobsTable = () => {
               <Avatar className="w-16 h-16 mt-4 mr-4">
                 <AvatarImage src={job?.company?.logo} />
               </Avatar>
-
               <TableCell className="font-semibold">{job?.title?.charAt(0).toUpperCase() + job?.title?.slice(1)}</TableCell>
               <TableCell>{job?.company?.name?.toUpperCase()}</TableCell>
-
               <TableCell>{job?.salary} LPA </TableCell>
               <TableCell>{job?.location?.charAt(0).toUpperCase() + job?.location?.slice(1)}</TableCell>
-
               <TableCell>{job?.jobType}</TableCell>
               <TableCell className="text-center">{job?.applications.length}</TableCell>
-
               <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
               <TableCell className="text-right cursor-pointer">
                 <Popover open={openPopoverId === job._id} onOpenChange={(open) => setOpenPopoverId(open ? job._id : null)}>

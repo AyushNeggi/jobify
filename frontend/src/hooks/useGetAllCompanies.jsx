@@ -1,3 +1,4 @@
+//to return all companies posted by loggedin admin
 import { setCompanies } from "@/redux/companySlice";
 import { COMPANY_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
@@ -10,7 +11,6 @@ const useGetAllCompanies = () => {
     const fetchCompanies = async () => {
       try {
         const res = await axios.get(`${COMPANY_API_END_POINT}/get`, { withCredentials: true });
-
         if (res.data.success) {
           dispatch(setCompanies(res.data.companies));
         }

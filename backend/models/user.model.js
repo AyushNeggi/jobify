@@ -36,6 +36,6 @@ const userSchema = new mongoose.Schema(
       },
     },
   },
-  { timestamps: true }
-); //to record time
+  { timestamps: true }  // automatically adds createdAt: when the document was first created updatedAt: when it was last updated
+); 
 export const User = mongoose.model("User", userSchema);

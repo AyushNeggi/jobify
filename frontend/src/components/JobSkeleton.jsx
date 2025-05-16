@@ -1,4 +1,4 @@
-// components/JobSkeleton.jsx
+//component for job skeleton for browse page
 const JobSkeleton = () => {
   return (
     <div className="px-6 py-4 rounded-2xl shadow-md bg-white border border-gray-200 animate-pulse flex flex-col justify-between min-h-[260px]">

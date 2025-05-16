@@ -55,9 +55,9 @@ const Signup = () => {
         withCredentials: true,
       });
       if (res.data.success) {
-        dispatch(setUser(res.data.user)); // ✅ Update Redux with user info
+        dispatch(setUser(res.data.user));                  // ✅ Update Redux with user info
         toast.success(res.data.message);
-        navigate("/"); // ✅ Redirect after successful login
+        navigate("/");                                   // ✅ Redirect after successful login
       }
       
     } catch (error) {

@@ -10,8 +10,6 @@ import useGetAllCompanies from "@/hooks/useGetAllCompanies";
 
 const Companies = () => {
   useGetAllCompanies();
-
-  
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +28,6 @@ const Companies = () => {
             Add new company
           </Button>
         </div>
-
         <CompaniesTable />
       </div>
     </div>

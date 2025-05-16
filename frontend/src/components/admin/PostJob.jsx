@@ -173,7 +173,6 @@ const PostJob = () => {
                     <SelectItem value="3">3+ years</SelectItem>
                     <SelectItem value="5">5+ years</SelectItem>
                     <SelectItem value="10">10+ years</SelectItem>
-                    <SelectItem value="20">20+ years</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

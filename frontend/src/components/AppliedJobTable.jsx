@@ -2,15 +2,18 @@ import React from "react";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Badge } from "./ui/badge";
 import { useSelector } from "react-redux";
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 import Navbar from "./shared/Navbar";
 
 const AppliedJobTable = () => {
+
+  useGetAppliedJobs();
   const { allAppliedJobs } = useSelector((store) => store.job);
+
   return (
     <div>
       <Navbar />
       <hr className="my-4" />
-
       <div className="max-w-6xl mx-auto  bg-white rounded-2xl">
         <h1 className="font-semibold text-lg my-8 text-center  border border-black p-2">Applied Jobs</h1>
 
@@ -22,9 +25,7 @@ const AppliedJobTable = () => {
               <TableHead> Company</TableHead>
               <TableHead> Salary </TableHead>
               <TableHead> Location</TableHead>
-
               <TableHead>Date Applied</TableHead>
-
               <TableHead className="text-right">Status </TableHead>
             </TableRow>
           </TableHeader>
@@ -38,9 +39,7 @@ const AppliedJobTable = () => {
                   <TableCell className="font-medium">{appliedJob?.job?.company?.name}</TableCell>
                   <TableCell>{appliedJob?.job?.salary} LPA</TableCell>
                   <TableCell>{appliedJob?.job?.location}</TableCell>
-
                   <TableCell>{appliedJob?.createdAt?.split("T")[0]}</TableCell>
-
                   <TableCell className="text-right text-[16px]">
                     <Badge
                       className={`${

@@ -23,14 +23,17 @@ const HeroSection = () => {
         </h1>
         <p className="font-serif text-[#cfa093]">
           do you want to increase your chance of getting selected Just <span className="text-[#034001] font-semibold">APPLY</span> and get the
-          Interview Call{" "}
-        </p>
+          Interview Call </p>
 
         <div className="mt-8 flex w-[40%] shadow-lg border border-gray-200 pl-3 rounded-full items-center gap-4 mx-auto">
           <input
             type="text"
             placeholder="Find your dream jobs"
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e)=>{
+              if(e.key === "Enter"){
+                searchJobHandler();
+            }}}
             className="outline-none border-none w-full"
           />
           <Button onClick={searchJobHandler} className=" rounded-r-full bg-[#893f71]">

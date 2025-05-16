@@ -20,12 +20,9 @@ const Navbar = () => {
     try {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
       if (res.data.success) {
-      navigate("/");
+        navigate("/");
         dispatch(setUser(null));
-      dispatch(setAllJobs([]));       +
-      dispatch(setAllAdminJobs([]));   
-      dispatch(setAllAppliedJobs([])); 
-      toast.success(res.data.message);
+        toast.success(res.data.message);
       }
     } catch (error) {
       console.log(error);

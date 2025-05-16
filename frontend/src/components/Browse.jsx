@@ -11,12 +11,10 @@ const Browse = () => {
   useGetAllJobs();
   const dispatch = useDispatch();
   const { allJobs } = useSelector((store) => store.job);
-
   const [loading, setLoading] = useState(true);
   const [visibleJobs, setVisibleJobs] = useState([]);
 
-  useEffect(() => {
-    // Cleanup searchedQuery on unmount
+  useEffect(() => {               // Cleanup searchedQuery on unmount
     return () => {
       dispatch(setSearchedQuery(""));
     };
@@ -39,7 +37,6 @@ const Browse = () => {
         <h1 className="font-bold text-xl my-10">
           Search Results ({visibleJobs.length})
         </h1>
-
         {loading ? (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {[...Array(6)].map((_, index) => (
@@ -62,8 +59,6 @@ const Browse = () => {
       ))}
     </AnimatePresence>
   </div>
-
-       
         )}
       </div>
     </div>

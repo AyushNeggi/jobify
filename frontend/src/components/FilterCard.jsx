@@ -38,13 +38,12 @@ const FilterCard = () => {
   }, [selectedValue]);
 
   return (
-    <div className="w-full bg-white p-4  rounded-md  border-2 ">
+    <div className="w-full bg-white p-4  rounded-md  border-2  ">
       <h1 className="font-bold text-lg ">Filter Jobs</h1>
       <hr className="my-3" />
-
       <RadioGroup value={selectedValue} onValueChange={changeHandler}>
         {filterData.map((data, index) => (
-          <div>
+          <div >
             <Button className="bg-[#bfe7ed] hover:bg-[#8be6f3] p-2 border-4 my-4 ">
               <h1 className="font-bold text-lg text-indigo-600 ">{data.filterType}</h1>
             </Button>
@@ -55,8 +54,7 @@ const FilterCard = () => {
                   <RadioGroupItem value={item} id={itemId} />
                   <Label htmlFor={itemId}>{item}</Label>
                 </div>
-              );
-            })}
+              ); })}
           </div>
         ))}
       </RadioGroup>

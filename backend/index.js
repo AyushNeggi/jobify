@@ -10,16 +10,17 @@ import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import path from "path";
 
-dotenv.config({});
+dotenv.config({});                                   //This line loads environment variables from a .env file into process.env
 
 const app = express();
 
 //middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(express.json());                                       //This middleware tells Express to accept JSON data in the body of requests
+app.use(express.urlencoded({ extended: true }));              //This allows your app to read data from HTML forms 
+app.use(cookieParser());                                      // This middleware helps in parsing cookies sent by the client.
 
-const corsOptions = {
+
+const corsOptions = {                                                                //  You're specifying allowed origins (i.e., which frontend domains can talk to your backend credentials: true means the browser can send cookies/headers with requests.
   origin: [ "http://localhost:5173", "https://jobify-4pp2.onrender.com" ],
   credentials: true,
 };
@@ -28,7 +29,7 @@ app.use(cors(corsOptions)); // Applies CORS settings to all incoming requests
 
 const PORT = process.env.PORT || 3000;
 
-const _dirname = path.resolve();
+const _dirname = path.resolve(); //This gets the absolute path of your current directory
 
 app.use("/api/v1/user", userRoute);
 

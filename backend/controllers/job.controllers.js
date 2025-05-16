@@ -5,7 +5,7 @@ import { Job } from "../models/job.model.js";
 export const postJob = async (req, res) => {
   try {
     const { title, description, requirements, salary, location, position, jobType, experience, companyId } = req.body;
-    const userId = req.id;
+    const userId = req.id;           //logged in user
 
     if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !companyId || !position) {
       return res.status(400).json({
@@ -42,12 +42,12 @@ export const getAllJobs = async (req, res) => {
     let query = {};
     if (keyword && keyword !== "undefined") {
       query = {
-        $or: [{ title: { $regex: keyword, $options: "i" } }, { description: { $regex: keyword, $options: "i" } }],
+        $or: [{ title: { $regex: keyword, $options: "i" } }, { description: { $regex: keyword, $options: "i" } }],   //$regex lets MongoDB search text patterns  $options: "i" makes it case-insensitive
       };
     }
 
-    const jobs = await Job.find(query).populate({ path: "company" }).sort({ createdAt: -1 });
-
+    const jobs = await Job.find(query).populate({ path: "company" }).sort({ createdAt: -1 });                    //.sort({ createdAt: -1 }) ➝ Newest jobs show first (descending order)
+  
     if (!jobs) {
       return res.status(404).json({
         message: "Jobs not found.",
@@ -67,9 +67,8 @@ export const getAllJobs = async (req, res) => {
 //searching job by student
 export const getJobById = async (req, res) => {
   try {
-    const jobId = req.params.id;
-    const job = await Job.findById(jobId).populate({
-      //each job have information about application but we need information about applicant
+    const jobId = req.params.id;                                 //You’re fetching a specific job using its ID (from the URL)
+    const job = await Job.findById(jobId).populate({            //each job have information about application but we need information about applicant
       path: "applications",
     });
     if (!job) {
@@ -91,8 +90,7 @@ export const getJobById = async (req, res) => {
 export const getAdminJobs = async (req, res) => {
   try {
     const adminId = req.id;
-    const jobs = await Job.find({ created_by: adminId }).populate({
-      // all information about company that posted that job will be shared
+    const jobs = await Job.find({ created_by: adminId }).populate({          // all information about company that posted that job will be shared
       path: "company",
       createdAt: -1,
     });

@@ -12,24 +12,19 @@ import Navbar from "./shared/Navbar";
 export const JobDescription = () => {
   const params = useParams();
   const jobId = params.id;
-
   const { singleJob } = useSelector((store) => store.job);
-
   const { user } = useSelector((store) => store.auth);
-
   const dispatch = useDispatch();
-
   const isIntiallyApplied = singleJob?.applications?.some((application) => application.applicant === user?._id) || false;
-
   const [isApplied, setIsApplied] = useState(isIntiallyApplied);
 
   const applyJobHandler = async () => {
     try {
       const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, { withCredentials: true });
       if (res.data.success) {
-        setIsApplied(true); //update local state
-        const updatedSingleJob = { ...singleJob, applications: [...singleJob.applications, { applicant: user?._id }] }; //updating applied user in application
-        dispatch(setSingleJob(updatedSingleJob)); //helps us to ui update in real time
+        setIsApplied(true);                                          //update local state
+        const updatedSingleJob = { ...singleJob, applications: [...singleJob.applications, { applicant: user?._id }] }; //It’s creating a new updated job object with one more application added
+        dispatch(setSingleJob(updatedSingleJob));                //helps us to ui update in real time
         toast.success(res.data.message);
       }
     } catch (error) {
@@ -71,21 +66,19 @@ export const JobDescription = () => {
                 {singleJob?.jobType}
               </Badge>
               <Badge className={"text-[#7209b7] font-bold text-[12px]"} variant="ghost">
-                {singleJob?.salary} LPA
+                ₹ {singleJob?.salary} LPA
               </Badge>
             </div>
           </div>
-          {
-            user && 
+          {user && (
             <Button
-            onClick={isIntiallyApplied ? null : applyJobHandler}
-            disabled={isIntiallyApplied}
-            className={`rounded-lg ${isIntiallyApplied ? "bg-gray-600 cursor-not-allowed" : "bg-[#2e86c1] hover:bg-[#21618c]"}`}
-          >
-            {isIntiallyApplied ? " Already applied" : "Apply Now"}
-          </Button>
-          }
-          
+              onClick={isIntiallyApplied ? null : applyJobHandler}
+              disabled={isIntiallyApplied}
+              className={`rounded-lg ${isIntiallyApplied ? "bg-gray-600 cursor-not-allowed" : "bg-[#2e86c1] hover:bg-[#21618c]"}`}
+            >
+              {isIntiallyApplied ? " Already applied" : "Apply Now"}
+            </Button>
+          )}
         </div>
         <h1 className="border-b-2 border-b-gray-300 font-medium my-4 py-1">Job description</h1>
 
@@ -108,7 +101,7 @@ export const JobDescription = () => {
           </h1>
           <h1 className="font-bold my-1">
             Salary:
-            <span className="pl-4 font-normal text-gray-800">{singleJob?.salary} LPA</span>
+            <span className="pl-4 font-normal text-gray-800">₹{singleJob?.salary} LPA</span>
           </h1>
           <h1 className="font-bold my-1">
             Total Applicants:

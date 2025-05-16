@@ -9,8 +9,8 @@ import useGetAllAdminJobs from "@/hooks/useGetAllAdminJobs";
 import { setSearchJobByText } from "@/redux/jobSlice";
 
 const AdminJobs = () => {
+  
   useGetAllAdminJobs();
-
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,18 +18,17 @@ const AdminJobs = () => {
   useEffect(() => {
     dispatch(setSearchJobByText(input));
   }, [input]);
+
   return (
     <div>
       <Navbar />
       <div className="  max-w-7xl mx-auto my-12">
         <div className="flex items-center justify-between my-5 ">
-          <Input className="w-fit " placeholder="search here" onChange={(e) => setInput(e.target.value)} />
-
+          <Input className="w-fit " placeholder="search here" onChange={(e) => setInput(e.target.value)}  />
           <Button className="p-4 bg-[#88B6F2] hover:bg-[#B3CFF2] " onClick={() => navigate("/admin/jobs/create")}>
-            Add Jobs{" "}
+            Add Jobs
           </Button>
         </div>
-
         <AdminJobsTable />
       </div>
     </div>

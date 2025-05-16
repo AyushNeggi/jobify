@@ -26,7 +26,6 @@ export const registerCompany = async (req, res) => {
       userId: req.id,
     });
 
-    //const companydata = await Company.findOne({name:companyName});
     let user = await User.findById(req.id);
     user.profile.company = company;
 
@@ -44,7 +43,7 @@ export const registerCompany = async (req, res) => {
 export const getCompany = async (req, res) => {
   try {
     const userId = req.id; //logged in user id company is to be searched
-    const companies = await Company.find({ userId }).populate("userId", "fullname"); //array of company created by that user
+    const companies = await Company.find({ userId }).populate("userId", "fullname");        //replaces the user ID with the actual user's full name.
     if (!companies) {
       return res.status(404).json({
         message: "companies not found ",
@@ -61,12 +60,10 @@ export const getCompany = async (req, res) => {
 };
 
 //get company by company id
-
 export const getCompanyById = async (req, res) => {
   try {
     const companyId = req.params.id;
 
-    // Populate only necessary fields (e.g., fullname)
     const company = await Company.findById(companyId);
 
     if (!company) {
@@ -107,7 +104,7 @@ export const updateCompany = async (req, res) => {
     }
     const companyId = req.params.id;
     const company = await Company.findByIdAndUpdate(companyId, updateData, {
-      new: true,
+      new: true,                       // ensures you get the updated version of the company in response.
     });
     if (!company) {
       return res.status(404).json({

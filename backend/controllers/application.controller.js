@@ -38,7 +38,7 @@ export const applyJob = async (req, res) => {
       job: jobId,
       applicant: userId,
     });
-    job.applications.push(newApplication._id);
+    job.applications.push(newApplication._id);          //You're adding the newly created application’s ID into the applications array of the Job.
     await job.save();
 
     return res.status(200).json({
@@ -56,12 +56,10 @@ export const getAppliedJobs = async (req, res) => {
     const userId = req.id;
     const application = await Application.find({ applicant: userId })
       .sort({ createdAt: -1 })
-      .populate({
-        //info about job
+      .populate({                                                 //info about job    
         path: "job",
         options: { sort: { createdAt: -1 } },
-        populate: {
-          //info about company  =>nested populate
+        populate: {                                               //info about company  =>nested populate      
           path: "company",
           options: { sort: { createdAt: -1 } },
         },
@@ -136,5 +134,3 @@ export const updateStatus = async (req, res) => {
     console.log(error);
   }
 };
-
-

@@ -17,6 +17,7 @@ import AppliedJobTable from "./components/AppliedJobTable";
 import AdminHome from "./components/admin/AdminHome";
 
 const appRouter = createBrowserRouter([
+  
   //for student side
   {
     path: "/",

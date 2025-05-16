@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 const Latestjobs = () => {
-
+  
   const{originalJobs} = useSelector((store=>store.job));
+
   return (
     <div className="max-w-6xl mx-auto my-10">
       <h1 className=" text-4xl font-bold p-4 ">
